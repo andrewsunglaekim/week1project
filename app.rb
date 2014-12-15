@@ -7,6 +7,14 @@ require_relative './models/item'
 require_relative './models/purchase'
 require_relative './models/deal'
 require 'pry'
+require_relative './config/environments'
 
 
-binding.pry
+
+
+# binding.pry
+
+get '/' do
+	
+	erb :index
+end
