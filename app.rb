@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'bcrpyt'
+require 'bcrypt'
 require 'pry'
 
 require_relative './models/user'
@@ -10,9 +10,14 @@ require_relative './models/purchase'
 require_relative './models/deal'
 require_relative './config/environments'
 
+enable :sessions
 
+before do
 
-
+	@errors ||= []
+	puts session.inspect
+	@current_user = User.find_by(id: session[:user_id])
+end
 
 # binding.pry
 
@@ -28,7 +33,24 @@ get '/signup' do
 end
 
 post '/signup' do
+	@password = BCrypt::Password.create(params[:password])
+	if params[:password] == params[:password_confirm]
+		user = User.new(name: params[:name], email: params[:email], password_digest: @password)
+		if user.save
+			session[:user_id] = user.id
+			redirect('/')
+		else
+			@errors << "Invalid email or password"
+			erb :signup
+		end
+	else
+		@errors << "Password does not match"
+		erb :signup
+	end
+end
 
+get '/login' do
+	
 end
 
 get '/create_item' do
@@ -43,6 +65,10 @@ end
 get '/create_vendor' do
 
 	erb :create_vendor
+end
+
+post '/create_vendor' do
+
 end
 
 
