@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require 'bcrypt'
 require 'pry'
@@ -16,7 +17,7 @@ before do
 
 	@errors ||= []
 	# puts session[:user_id]
-	@current_user = User.find(session[:user_id])
+	@current_user = User.find_by(id: session[:user_id])
 end
 
 # binding.pry
@@ -39,7 +40,7 @@ post '/signup' do
 		user = User.new(name: params[:name], email: params[:email], username: params[:username], password_digest: @password)
 		if user.save
 			session[:user_id] = user.id
-			redirect('/')
+			redirect("/users/#{user.username}")
 		else
 			@errors << "Invalid email or password"
 			erb :signup
@@ -59,28 +60,35 @@ post '/login' do
 	@user = User.find_by(username: params[:username])
 	if @user && @user.authenticate(params[:password])
 		session[:user_id] = @user.id
-		redirect '/'
+		redirect("/users/#{@user.username}")
 	else
 		@errors << "Invalid email or password. Please try again."
 		erb :login
 	end
 end
 
-get '/create_item' do
-
-	erb :create_item
+get '/users/:username' do
+	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
+	@items = Item.all.sort_by{|item|item.name.downcase}
+	@deals = Deal.all
+	erb :users
 end
+
 
 post '/create_item' do
 	@item = Item.create(name: params[:name], description: params[:description])
+	redirect("/users/#{@current_user.username}")
 end
 
-get '/create_vendor' do
-
-	erb :create_vendor
-end
 
 post '/create_vendor' do
+	@vendor = Vendor.create(name: params[:name], user_id: @current_user.id)
+	redirect("/users/#{@current_user.username}")
+end
+
+post '/create_deal' do
+	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: params[:price])
+	redirect("/users/#{@current_user.username}")
 
 end
 

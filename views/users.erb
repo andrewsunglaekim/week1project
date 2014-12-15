@@ -1,0 +1,43 @@
+<h1> Welcome <%=@current_user.username %>
+<h1> See deals </h1>
+<% @deals.each do |deal| %>
+<li><%= deal.vendor.name %> <%= deal.item.name %> <%=deal.price%></li>
+<% end %>
+
+<h1> Create Vendor </h1>
+<h2>Create a Vendor</h2>
+	<form action="/create_vendor" method="post">
+	  <legend>Name</legend>
+	  <input type="text" name="name" placeholder="Put vendor name here...">
+	  <input type="submit">
+	</form>
+<h1> Create Item </h1>
+	<form action="/create_item" method="post">
+	  <legend>Name</legend>
+	  <input type="text" name="name" placeholder="Put name here...">
+	  <legend>Description</legend>
+	  <input type="text" name="description">
+	  <input type="submit">
+	</form>
+
+<h1> Create Deal </h1>
+	<form action="/create_deal" method ="post">
+		<legend>vendor</legend>
+		<select name="vendor">
+			<% @vendors.each do |vendor| %>
+	  	<option value = "<%= vendor.id %>"><%=vendor.name%></option>
+	  	<% end %>
+		</select>
+		<legend>item</legend>
+		<select name="item">
+			<% @items.each do |item| %>
+			<option value = "<%= item.id %>"><%=item.name%></option>
+			<% end %>
+		</select>
+		<legend>price</legend>
+		<input type="text" name="price">
+		<input type="submit">
+	</form>
+
+
+<h1> Make Purchase </h1>
