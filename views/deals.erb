@@ -1,0 +1,25 @@
+<% if @deals %>
+	<h2><%=@placeholder.capitalize %></h2>
+	<ul>
+	<% @deals.each do |deal| %>
+		<li><%= deal.item.name %> <%= deal.vendor.name %> <%= deal.price %></li>
+		<% end %>
+	</ul>
+<%end%>
+<h1> Search deals by vendor </h1>
+
+<form action='/see_deals_by_vendor' method="post">
+	<legend> Vendor Name </legend>
+	<input type="text" name="name" placeholder="Put vendor name here...">
+	<input type="submit">
+</form>
+
+<h1> Search deals by item </h1>
+
+<form action='/see_deals_by_item' method="post">
+	<legend> Item name </legend>
+	<input type="text" name="name" placeholder="Put vendor name here...">
+	<input type="submit">
+</form>
+
+<h1> See all deals </h1>

@@ -74,12 +74,40 @@ get '/users/:username' do
 	erb :users
 end
 
+get '/users/:username/deals' do
+	@deals ||= []
+	@placeholder ||= ''
+	erb :deals
+end
+
+post '/see_deals_by_vendor' do
+	@vendor = Vendor.find_by(name: params[:name])
+	if @vendor.nil?
+		@errors << "Unknown Vendor"
+		erb :deals
+	else	
+		@deals = @vendor.deals
+		@placeholder = @vendor.name
+		erb :deals
+	end
+end
+
+post '/see_deals_by_item' do
+	@item = Item.find_by(name: params[:name])
+	if @item.nil?
+		@errors << "Unknown Item"
+		erb :deals
+	else
+		@deals = @item.deals
+		@placeholder = @item.name
+		erb :deals
+	end
+end
 
 post '/create_item' do
 	@item = Item.create(name: params[:name], description: params[:description])
 	redirect("/users/#{@current_user.username}")
 end
-
 
 post '/create_vendor' do
 	@vendor = Vendor.create(name: params[:name], user_id: @current_user.id)
@@ -91,5 +119,6 @@ post '/create_deal' do
 	redirect("/users/#{@current_user.username}")
 
 end
+
 
 
