@@ -1,24 +1,36 @@
-<% if @deals %>
+<% if @deals.length > 0 %>
 	<h2><%=@placeholder.capitalize %></h2>
 	<ul>
 	<% @deals.each do |deal| %>
-		<li><%= deal.item.name %> <%= deal.vendor.name %> <%= deal.price %></li>
+		<li><%= deal.item.name %> <%= deal.vendor.name %> <%= deal.price %>
+		<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
+			<input type="submit" value="purchase">
+		</form>
+		<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>' method="delete">
+			<input type="submit" value="delete">
+		</form>
+		<a href='#'>update</a></li>
 		<% end %>
 	</ul>
 <%end%>
+<% @purchases.each do |purchase| %>
+<ul>
+<li><%= purchase.total_purchases %></li>
+</ul>
+<% end %>
 <h1> Search deals by vendor </h1>
 
-<form action='/see_deals_by_vendor' method="post">
+<form action='/users/<%=@current_user.username%>/deals' method="get">
 	<legend> Vendor Name </legend>
-	<input type="text" name="name" placeholder="Put vendor name here...">
+	<input type="text" name="vendor_name" placeholder="Put vendor name here...">
 	<input type="submit">
 </form>
 
 <h1> Search deals by item </h1>
 
-<form action='/see_deals_by_item' method="post">
+<form action='/users/<%=@current_user.username%>/deals' method="get">
 	<legend> Item name </legend>
-	<input type="text" name="name" placeholder="Put vendor name here...">
+	<input type="text" name="item_name" placeholder="Put item name here...">
 	<input type="submit">
 </form>
 

@@ -5,7 +5,12 @@
     <link type="text/css" rel="stylesheet" href="/styles.css">
   </head>
   <body>
-  	<%= @errors[0] %>
+  	<header>
+  		<h1> Welcome to Grocer </h1>
+  	</header>
+  	<div class="error">
+  		<%= @errors[0] %>
+  	</div>
     <%= yield %>
   </body>
 </html>

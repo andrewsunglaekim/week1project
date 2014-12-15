@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141214220546) do
   end
 
   create_table "purchases", force: true do |t|
-    t.integer  "item_id"
     t.integer  "user_id"
     t.integer  "deal_id"
     t.integer  "total_purchases"

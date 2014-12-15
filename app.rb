@@ -75,34 +75,72 @@ get '/users/:username' do
 end
 
 get '/users/:username/deals' do
-	@deals ||= []
-	@placeholder ||= ''
+	@purchases = Purchase.all
+	@deals = []
+	if params[:vendor_name]
+		@vendor = Vendor.find_by(name: params[:vendor_name])
+		@deals = @vendor.deals
+		@placeholder = @vendor.name
+	elsif params[:item_name]
+		@item = Item.find_by(name: params[:item_name])
+		@deals = @item.deals
+		@placeholder = @item.name
+	else
+		@deals = Deal.all
+		@placeholder = "All Deals"
+	end
 	erb :deals
 end
 
-post '/see_deals_by_vendor' do
-	@vendor = Vendor.find_by(name: params[:name])
-	if @vendor.nil?
-		@errors << "Unknown Vendor"
-		erb :deals
-	else	
-		@deals = @vendor.deals
-		@placeholder = @vendor.name
-		erb :deals
+post '/users/:username/purchase/:id' do
+	@user = User.find_by(username: params[:username])
+	@purchase = Purchase.find_by(user_id: @user.id, deal_id: params[:id])
+	if @purchase
+		@purchase.total_purchases += 1
+		@purchase.save
+	else
+		Purchase.create(user_id: @user.id, deal_id: params[:id], total_purchases: 1)
 	end
+	redirect("/users/#{@user.username}/deals")
+
 end
 
-post '/see_deals_by_item' do
-	@item = Item.find_by(name: params[:name])
-	if @item.nil?
-		@errors << "Unknown Item"
-		erb :deals
-	else
-		@deals = @item.deals
-		@placeholder = @item.name
-		erb :deals
-	end
+get '/users/:username/deals/:deal_id' do
+	@deal = Deal.find(params[:deal_id])
+	@deal.destroy
+	redirect("/users/#{params[:username]}/deals")
 end
+# get '/users/:username/deals' do
+# 	@deals ||= []
+# 	@placeholder ||= ''
+# 	erb :deals
+# end
+
+
+
+# post '/see_deals_by_vendor' do
+# 	@vendor = Vendor.find_by(name: params[:name])
+# 	if @vendor.nil?
+# 		@errors << "Unknown Vendor"
+# 		erb :deals
+# 	else	
+# 		@deals = @vendor.deals
+# 		@placeholder = @vendor.name
+# 		erb :deals
+# 	end
+# end
+
+# post '/see_deals_by_item' do
+# 	@item = Item.find_by(name: params[:name])
+# 	if @item.nil?
+# 		@errors << "Unknown Item"
+# 		erb :deals
+# 	else
+# 		@deals = @item.deals
+# 		@placeholder = @item.name
+# 		erb :deals
+# 	end
+# end
 
 post '/create_item' do
 	@item = Item.create(name: params[:name], description: params[:description])
@@ -118,6 +156,11 @@ post '/create_deal' do
 	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: params[:price])
 	redirect("/users/#{@current_user.username}")
 
+end
+
+get '/logout' do
+	session.clear
+	redirect('/')
 end
 
 
