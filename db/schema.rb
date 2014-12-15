@@ -41,10 +41,13 @@ ActiveRecord::Schema.define(version: 20141214220546) do
   create_table "users", force: true do |t|
     t.string   "name",            null: false
     t.string   "email",           null: false
+    t.string   "username",        null: false
     t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email", "username"], name: "index_users_on_email_and_username", unique: true, using: :btree
 
   create_table "vendors", force: true do |t|
     t.integer  "user_id"

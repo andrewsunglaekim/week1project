@@ -15,14 +15,15 @@ enable :sessions
 before do
 
 	@errors ||= []
-	puts session.inspect
-	@current_user = User.find_by(id: session[:user_id])
+	# puts session[:user_id]
+	@current_user = User.find(session[:user_id])
 end
 
 # binding.pry
 
 get '/' do
 	@items = Item.all
+	@users = User.all
 	
 	erb :index
 end
@@ -35,7 +36,7 @@ end
 post '/signup' do
 	@password = BCrypt::Password.create(params[:password])
 	if params[:password] == params[:password_confirm]
-		user = User.new(name: params[:name], email: params[:email], password_digest: @password)
+		user = User.new(name: params[:name], email: params[:email], username: params[:username], password_digest: @password)
 		if user.save
 			session[:user_id] = user.id
 			redirect('/')
@@ -50,7 +51,19 @@ post '/signup' do
 end
 
 get '/login' do
-	
+
+	erb :login
+end
+
+post '/login' do
+	@user = User.find_by(username: params[:username])
+	if @user && @user.authenticate(params[:password])
+		session[:user_id] = @user.id
+		redirect '/'
+	else
+		@errors << "Invalid email or password. Please try again."
+		erb :login
+	end
 end
 
 get '/create_item' do
