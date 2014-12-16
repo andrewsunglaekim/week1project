@@ -1,26 +1,4 @@
-<% if @deals.length == 0 %>
-	<h2>You have no deals yet!</h2>
-<% else %>
-	<h2><%=@placeholder.capitalize %></h2>
-	<ul>
-
-		<% @deals.each do |deal| %>
-			<li>
-				<%= deal.item.name %> <%= deal.vendor.name %> <%= deal.price %>
-				<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
-					<input type="submit" value="purchase">
-				</form>
-				<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>/delete' method="delete">
-					<input type="submit" value="delete">
-				</form>
-				<a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a>
-			</li>
-		<% end %>
-	</ul>
-<%end%>
-
-
-<h1> Search deals by vendor </h1>
+<h1> Search deals by vendor or enter all for all deals</h1>
 
 <form action='/users/<%=@current_user.username%>/deals' method="get">
 	<legend> Vendor Name </legend>
@@ -36,5 +14,40 @@
 	<input type="submit">
 </form>
 
-<h1> See all deals </h1>
+<% if @deals.length == 0 %>
+	<h2>You have no deals yet!</h2>
+<% else %>
+	<h2><%=@placeholder.capitalize %></h2>
+	<table>
+		<tr>
+			<th>Item Name</th>
+			<th>Item Description</th>
+			<th>Vendor Name</th>
+			<th>Price</th>
+		</tr>
+		<% @deals.each do |deal| %>
+			<tr>
+				<td><%= deal.item.name %></td>
+				<td><%= deal.item.description %></td>
+				<td><%= deal.vendor.name %></td>
+				<td><%= deal.price %></td>
+				<td>
+					<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
+						<input type="submit" value="purchase">
+					</form>
+				</td>
+				<td>
+					<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>/delete' method="delete">
+						<input type="submit" value="delete">
+					</form>
+				</td>
+				<td><a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a></td>
+			</tr>
+		<% end %>
+	</ul>
+<%end%>
+
+
+
+
 

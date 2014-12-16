@@ -1,0 +1,26 @@
+<% if @purchases.length == 0 %>
+	<h2>You have no purchases yet!</h2>
+<% else %>
+	<h2>Purchases</h2>
+	<table>
+		<tr>
+			<th>Item Name</th>
+			<th>Item Description</th>
+			<th>Vendor Name</th>
+			<th>Price</th>
+			<th>Total Purchases</th>
+		</tr>
+		<% @purchases.each do |purchase| %>
+			<tr>
+				<td><%= purchase.deal.item.name %></td>
+				<td><%=purchase.deal.item.description %></td>
+				<td><%= purchase.deal.vendor.name %></td>
+				<td><%= purchase.deal.price %></td>
+				<td><%=purchase.total_purchases %></td>
+				<td><form action='/users/<%=purchase.user.username%>/purchases/<%=purchase.id%>/delete' method="delete">
+					<input type="submit" value="delete">
+				</form></td>
+			</tr>
+		<% end %>
+	</ul>
+<%end%>

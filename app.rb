@@ -152,6 +152,12 @@ get '/users/:username/purchases' do
 	erb :purchases
 end
 
+get '/users/:username/purchases/:purchase_id/delete' do
+	@purchase = Deal.find(params[:purchase_id])
+	@purchase.destroy
+	redirect("/users/#{params[:username]}/purchases")
+end
+
 post '/create_item' do
 	@item = Item.new(name: params[:name], description: params[:description])
 	if @item.save
@@ -175,7 +181,8 @@ end
 
 get '/logout' do
 	session.clear
-	redirect('/')
+	@errors << "You have successfully logged out!"
+	erb :index
 end
 
 
