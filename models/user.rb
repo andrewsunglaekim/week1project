@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :vendors
-	has_many :purchases
+	has_many :vendors, dependent: :destroy
+	has_many :purchases, dependent: :destroy
 	has_many :deals, :through => :vendors
 
 	def authenticate(password)
