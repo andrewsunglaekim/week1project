@@ -80,7 +80,7 @@ post '/login' do
 end
 
 get '/users/:username' do
-	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
+	@vendors = @current_user.vendors.all.sort_by{|vendor|vendor.name.downcase}
 	@items = Item.all.sort_by{|item|item.name.downcase}
 	@deals = Deal.all
 	puts @deals.inspect
@@ -152,37 +152,6 @@ get '/users/:username/deals/:deal_id/delete' do
 	@deal.destroy
 	redirect("/users/#{params[:username]}/deals")
 end
-# get '/users/:username/deals' do
-# 	@deals ||= []
-# 	@placeholder ||= ''
-# 	erb :deals
-# end
-
-
-
-# post '/see_deals_by_vendor' do
-# 	@vendor = Vendor.find_by(name: params[:name])
-# 	if @vendor.nil?
-# 		@errors << "Unknown Vendor"
-# 		erb :deals
-# 	else	
-# 		@deals = @vendor.deals
-# 		@placeholder = @vendor.name
-# 		erb :deals
-# 	end
-# end
-
-# post '/see_deals_by_item' do
-# 	@item = Item.find_by(name: params[:name])
-# 	if @item.nil?
-# 		@errors << "Unknown Item"
-# 		erb :deals
-# 	else
-# 		@deals = @item.deals
-# 		@placeholder = @item.name
-# 		erb :deals
-# 	end
-# end
 
 post '/create_item' do
 	@item = Item.new(name: params[:name], description: params[:description])

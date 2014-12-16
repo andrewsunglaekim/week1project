@@ -1,15 +1,12 @@
-<h1> Welcome <%=@current_user.username.capitalize %>
-<h1> See deals </h1>
+<h2> Welcome <%=@current_user.username.capitalize %></h2>
 
-
-<h1> Create Vendor </h1>
-<h2>Create a Vendor</h2>
+<h3>Create a Vendor</h3>
 	<form action="/create_vendor" method="post">
 	  <legend>Name</legend>
 	  <input type="text" name="name" placeholder="Put vendor name here..." required>
 	  <input type="submit">
 	</form>
-<h1> Create Item </h1>
+<h3> Create Item </h3>
 	<form action="/create_item" method="post">
 	  <legend>Name</legend>
 	  <input type="text" name="name" placeholder="Put name here..." required>
@@ -18,7 +15,7 @@
 	  <input type="submit">
 	</form>
 
-<h1> Create Deal </h1>
+<h3> Create Deal </h3>
 	<form action="/create_deal" method ="post">
 		<legend>vendor</legend>
 		<select name="vendor">
@@ -36,6 +33,3 @@
 		<input type="text" name="price" required>
 		<input type="submit">
 	</form>
-
-
-<h1> Make Purchase </h1>
