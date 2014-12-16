@@ -1,3 +1,7 @@
+<nav>
+	<a href="/users/<%=@current_user.username%>">Go back to user page</a>
+	<a href="/users/<%=@current_user.username%>/deals">See and update your deals</a>
+</nav>
 <% if @purchases.length == 0 %>
 	<h2>You have no purchases yet!</h2>
 <% else %>
