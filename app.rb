@@ -74,6 +74,22 @@ get '/users/:username' do
 	erb :users
 end
 
+get '/users/:username/deals/:deal_id' do
+	@deal_id = params[:deal_id]
+	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
+	@items = Item.all.sort_by{|item|item.name.downcase}
+	erb :update_deal
+end
+
+post '/users/:username/deals/:deal_id' do
+	@deal = Deal.find(params[:deal_id])
+	@deal.vendor_id = params[:vendor]
+	@deal.item_id = params[:item]
+	@deal.price = params[:price]
+	@deal.save
+	redirect("/users/#{params[:username]}/deals")
+end
+
 get '/users/:username/deals' do
 	@purchases = Purchase.all
 	@deals = []

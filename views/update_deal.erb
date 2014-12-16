@@ -1,0 +1,17 @@
+<form action="/users/<%=@current_user.username%>/deals/<%=@deal_id%>" method ="post">
+	<legend>vendor</legend>
+	<select name="vendor">
+		<% @vendors.each do |vendor| %>
+	  	<option value = "<%= vendor.id %>"><%=vendor.name%></option>
+	  <% end %>
+	</select>
+	<legend>item</legend>
+	<select name="item">
+		<% @items.each do |item| %>
+			<option value = "<%= item.id %>"><%=item.name%></option>
+		<% end %>
+	</select>
+	<legend>price</legend>
+	<input type="text" name="price">
+	<input type="submit">
+</form>

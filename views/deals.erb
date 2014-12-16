@@ -9,7 +9,7 @@
 		<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>' method="delete">
 			<input type="submit" value="delete">
 		</form>
-		<a href='#'>update</a></li>
+		<a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a></li>
 		<% end %>
 	</ul>
 <%end%>
