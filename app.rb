@@ -43,7 +43,7 @@ post '/signup' do
 			session[:user_id] = user.id
 			redirect("/users/#{user.username}")
 		else
-			@errors << "Invalid email or password"
+			@errors << "username or email already exists in system"
 			erb :signup
 		end
 	else
