@@ -1,3 +1,9 @@
+<nav>
+	<a href="/users/<%=@current_user.username%>">User Page</a>
+	<a href="/users/<%=@current_user.username%>/deals">Deals</a>
+	<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
+</nav>
+
 <ul>
 	<% @vendors.each do |vendor| %>
 		<li><%= vendor.name %>
