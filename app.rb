@@ -57,6 +57,12 @@ get '/items' do
 	erb :items
 end
 
+get '/items/:id' do
+	@item = Item.find(params[:id])
+	@item.destroy
+	redirect("/items")
+end
+
 get '/login' do
 
 	erb :login
@@ -179,7 +185,13 @@ end
 # end
 
 post '/create_item' do
-	@item = Item.create(name: params[:name], description: params[:description])
+	@item = Item.new(name: params[:name], description: params[:description])
+	if @item.save
+	elsif @item.name.nil?
+		@errors << "Please enter an item name"
+	else
+		@errors << "Item already exists"
+	end
 	redirect("/users/#{@current_user.username}")
 end
 

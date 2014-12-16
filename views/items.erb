@@ -1,0 +1,10 @@
+<ul>
+<% @items.each do |item|%>
+	<li>
+		<%= item.name %> <%=item.description%>
+		<form action='/items/<%=item.id%>' method="delete">
+			<input type="submit" value="delete">
+		</form>
+	</li>
+<% end %>
+</ul>
