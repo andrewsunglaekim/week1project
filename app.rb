@@ -11,6 +11,7 @@ require_relative './models/purchase'
 require_relative './models/deal'
 require_relative './config/environments'
 
+
 enable :sessions
 
 before do
@@ -76,6 +77,9 @@ get '/users/:username' do
 	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
 	@items = Item.all.sort_by{|item|item.name.downcase}
 	@deals = Deal.all
+	puts @deals.inspect
+	puts @items.inspect
+	puts @vendors.inspect
 	erb :users
 end
 
@@ -89,8 +93,6 @@ get '/users/:username/vendors/:id' do
 	@vendor.destroy
 	redirect("/users/#{params[:username]}/vendors")
 end
-
-
 
 get '/users/:username/deals/:deal_id' do
 	@deal_id = params[:deal_id]
@@ -111,7 +113,7 @@ end
 get '/users/:username/deals' do
 	@purchases = Purchase.all
 	@deals = []
-	if params[:vendor_name]
+	if params[:vendor_name] && Vendor.find_by(name: params[:vendor_name])
 		@vendor = Vendor.find_by(name: params[:vendor_name])
 		@deals = @vendor.deals
 		@placeholder = @vendor.name
@@ -139,7 +141,7 @@ post '/users/:username/purchase/:id' do
 
 end
 
-get '/users/:username/deals/:deal_id' do
+get '/users/:username/deals/:deal_id/delete' do
 	@deal = Deal.find(params[:deal_id])
 	@deal.destroy
 	redirect("/users/#{params[:username]}/deals")
