@@ -1,0 +1,9 @@
+<ul>
+	<% @vendors.each do |vendor| %>
+		<li><%= vendor.name %>
+		<form action='/users/<%=@current_user.username%>/vendors/<%=vendor.id%>' method="delete">
+			<input type="submit" value="delete">
+		</form>
+		</li>
+	<% end %>
+</ul>

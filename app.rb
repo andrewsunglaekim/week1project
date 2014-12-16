@@ -51,6 +51,11 @@ post '/signup' do
 	end
 end
 
+get '/items' do
+	@items = Item.all
+	erb :items
+end
+
 get '/login' do
 
 	erb :login
@@ -73,6 +78,19 @@ get '/users/:username' do
 	@deals = Deal.all
 	erb :users
 end
+
+get '/users/:username/vendors' do
+	@vendors = @current_user.vendors
+	erb :vendors
+end
+
+get '/users/:username/vendors/:id' do
+	@vendor = Vendor.find(params[:id])
+	@vendor.destroy
+	redirect("/users/#{params[:username]}/vendors")
+end
+
+
 
 get '/users/:username/deals/:deal_id' do
 	@deal_id = params[:deal_id]
@@ -171,7 +189,6 @@ end
 post '/create_deal' do
 	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: params[:price])
 	redirect("/users/#{@current_user.username}")
-
 end
 
 get '/logout' do
