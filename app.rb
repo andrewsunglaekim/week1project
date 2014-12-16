@@ -117,12 +117,12 @@ get '/users/:username/deals' do
 		@vendor = Vendor.find_by(name: params[:vendor_name])
 		@deals = @vendor.deals
 		@placeholder = @vendor.name
-	elsif params[:item_name]
+	elsif params[:item_name] && Item.find_by(name: params[:item_name])
 		@item = Item.find_by(name: params[:item_name])
 		@deals = @item.deals
 		@placeholder = @item.name
 	else
-		@deals = Deal.all
+		@deals = User.find_by(username: params[:username]).deals
 		@placeholder = "All Deals"
 	end
 	erb :deals

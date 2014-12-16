@@ -1,4 +1,6 @@
-<% if @deals.length > 0 %>
+<% if @deals.length == 0 %>
+	<h2>You have no deals yet!</h2>
+<% else %>
 	<h2><%=@placeholder.capitalize %></h2>
 	<ul>
 
