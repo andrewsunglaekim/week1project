@@ -153,7 +153,7 @@ get '/users/:username/purchases' do
 end
 
 get '/users/:username/purchases/:purchase_id/delete' do
-	@purchase = Deal.find(params[:purchase_id])
+	@purchase = Purchase.find(params[:purchase_id])
 	@purchase.destroy
 	redirect("/users/#{params[:username]}/purchases")
 end
