@@ -11,7 +11,6 @@ require_relative './models/purchase'
 require_relative './models/deal'
 require_relative './config/environments'
 
-
 enable :sessions
 
 before do
@@ -21,17 +20,13 @@ before do
 	@current_user = User.find_by(id: session[:user_id])
 end
 
-# binding.pry
-
 get '/' do
 	@items = Item.all
 	@users = User.all
-	
 	erb :index
 end
 
 get '/signup' do
-
 	erb :signup
 end
 
@@ -52,19 +47,7 @@ post '/signup' do
 	end
 end
 
-get '/items' do
-	@items = Item.all
-	erb :items
-end
-
-get '/items/:id' do
-	@item = Item.find(params[:id])
-	@item.destroy
-	redirect("/items")
-end
-
 get '/login' do
-
 	erb :login
 end
 
@@ -77,6 +60,17 @@ post '/login' do
 		@errors << "Invalid email or password. Please try again."
 		erb :login
 	end
+end
+
+get '/items' do
+	@items = Item.all
+	erb :items
+end
+
+get '/items/:id' do
+	@item = Item.find(params[:id])
+	@item.destroy
+	redirect("/items")
 end
 
 get '/users/:username' do
@@ -100,22 +94,6 @@ get '/users/:username/vendors/:id' do
 	redirect("/users/#{params[:username]}/vendors")
 end
 
-get '/users/:username/deals/:deal_id' do
-	@deal_id = params[:deal_id]
-	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
-	@items = Item.all.sort_by{|item|item.name.downcase}
-	erb :update_deal
-end
-
-post '/users/:username/deals/:deal_id' do
-	@deal = Deal.find(params[:deal_id])
-	@deal.vendor_id = params[:vendor]
-	@deal.item_id = params[:item]
-	@deal.price = params[:price]
-	@deal.save
-	redirect("/users/#{params[:username]}/deals")
-end
-
 get '/users/:username/deals' do
 	@purchases = Purchase.all
 	@deals = []
@@ -132,6 +110,22 @@ get '/users/:username/deals' do
 		@placeholder = "All Deals"
 	end
 	erb :deals
+end
+
+get '/users/:username/deals/:deal_id' do
+	@deal_id = params[:deal_id]
+	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
+	@items = Item.all.sort_by{|item|item.name.downcase}
+	erb :update_deal
+end
+
+post '/users/:username/deals/:deal_id' do
+	@deal = Deal.find(params[:deal_id])
+	@deal.vendor_id = params[:vendor]
+	@deal.item_id = params[:item]
+	@deal.price = params[:price]
+	@deal.save
+	redirect("/users/#{params[:username]}/deals")
 end
 
 post '/users/:username/purchase/:id' do
@@ -151,6 +145,11 @@ get '/users/:username/deals/:deal_id/delete' do
 	@deal = Deal.find(params[:deal_id])
 	@deal.destroy
 	redirect("/users/#{params[:username]}/deals")
+end
+
+get '/users/:username/purchases' do
+	@purchases = @current_user.purchases
+	erb :purchases
 end
 
 post '/create_item' do
