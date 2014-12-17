@@ -53,3 +53,9 @@ header a {
 	float: right;
 	margin: 10px;
 }
+
+.table {
+	padding: 4px;
+  border:solid black 1px;
+  white-space: normal;
+}

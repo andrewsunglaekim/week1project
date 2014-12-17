@@ -28,30 +28,34 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Item Name</th>
-				<th>Item Description</th>
-				<th>Vendor Name</th>
-				<th>Price</th>
+				<th class="table">Item Name</th>
+				<th class="table">Item Description</th>
+				<th class="table">Vendor Name</th>
+				<th class="table">Price</th>
+				<th colspan="3" class="table">Purchase/Delete/Update</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @deals.each do |deal| %>
 				<tr>
-					<td><%= deal.item.name %></td>
-					<td><%= deal.item.description %></td>
-					<td><%= deal.vendor.name %></td>
-					<td><%= deal.price %></td>
-					<td>
+					<td class="table"><%= deal.item.name %></td>
+					<td class="table"><%= deal.item.description %></td>
+					<td class="table"><%= deal.vendor.name %></td>
+					<td class="table"><%= deal.price %></td>
+					<td class="table">
 						<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
 							<input type="submit" value="purchase">
 						</form>
 					</td>
-					<td>
+					<td class="table">
 						<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>/delete' method="delete">
 							<input type="submit" value="delete">
 						</form>
 					</td>
-					<td><a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a></td>
+					<td class="table">
+						<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>' method="get">
+							<input type="submit" value="update">
+					</td>
 				</tr>
 			<% end %>
 		</tbody>
