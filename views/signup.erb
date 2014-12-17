@@ -1,14 +1,11 @@
-<form action="/signup" method="post">
+<form class="signup_login" action="/signup" method="post">
   <fieldset>
-  <legend>Name</legend>
-  <input type="text" name="name" placeholder="Put name here..." required>
-  <legend>Email</legend>
-  <input type="email" name="email" placeholder="your_email@email.com" required>
-  <legend>Username</legend>
-  <input type="text" name="username" placeholder="username" required>
-  <legend>Password</legend>
-  <input type="password" name="password" required>
-  <legend>Confirm Password</legend>
-  <input type="password" name="password_confirm" required>
-  <input type="submit">
+    <legend>Signup</legend>
+    <p><label>Name</label><br><input type="text" name="name" placeholder="Put name here..." required/></p>
+    <p><label>Email</label><br><input type="email" name="email" placeholder="your_email@email.com" required/></p>
+    <p><label>Username</label><br><input type="text" name="username" placeholder="username" required/></p>
+    <p><label>Password</label><br><input type="password" name="password" required/></p>
+    <p><label>Confirm Password</label><br><input type="password" name="password_confirm" required/></p>
+    <p class="submit"><input type="submit"></p>
+  </fieldset>
 </form>

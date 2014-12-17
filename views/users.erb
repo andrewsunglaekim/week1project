@@ -6,13 +6,13 @@
 	<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
 </nav>
 
-<h3>Create a Vendor</h3>
+<legend>Create a Vendor</legend>
 	<form action="/create_vendor" method="post">
 	  <legend>Name</legend>
 	  <input type="text" name="name" placeholder="Put vendor name here..." required>
 	  <input type="submit">
 	</form>
-<h3> Create Item </h3>
+<legend> Create Item </legend>
 	<form action="/create_item" method="post">
 	  <legend>Name</legend>
 	  <input type="text" name="name" placeholder="Put name here..." required>
@@ -21,7 +21,7 @@
 	  <input type="submit">
 	</form>
 
-<h3> Create Deal </h3>
+<legend> Create Deal </legend>
 	<form action="/create_deal" method ="post">
 		<legend>vendor</legend>
 		<select name="vendor">

@@ -39,11 +39,29 @@ header h1{
 	display: block;
 
 }
+/*Forms styles*/
+.submit input
+{
+margin-left: 4.5em;
+}
 
 fieldset{
 	border: 3px solid #781351;
-	width: 18em
+	width:  41%;
+	margin: auto;
+
 	}
+
+fieldset input{
+	margin-left: 10px;
+}
+
+label{
+	margin-right: 0.5em;
+	display: inline-block;
+	margin-left: 10px;
+	padding-bottom: 4px;
+}
 
 legend{
 	color: #fff;
@@ -58,6 +76,7 @@ header a {
 	color :#fff;
 	text-decoration: none;
 	text-shadow: 4px 4px 4px #000;
+	margin-right: 15px;
 }
 
 .greeting {
@@ -69,4 +88,10 @@ header a {
 	padding: 4px;
   border:solid black 1px;
   white-space: normal;
+}
+
+.signup_login {
+	padding-top: 30px;
+	width: 50%;
+	margin: auto;
 }
