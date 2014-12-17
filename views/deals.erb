@@ -1,24 +1,31 @@
-<nav>
-	<a href="/users/<%=@current_user.username%>">User Page</a>
-	<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
-	<a href="/users/<%=@current_user.username%>/deals">Deals</a>
-	<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
-</nav>
+<div class="userheader">
+	<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
+	<nav class="user">
+		<a href="/users/<%=@current_user.username%>">User Page</a>
+		<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
+		<a href="/users/<%=@current_user.username%>/deals">Deals</a>
+		<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
+	</nav>
+</div>
 
-<h2> Search deals by vendor or enter all for all deals</h2>
+
 
 <form action='/users/<%=@current_user.username%>/deals' method="get">
-	<legend> Vendor Name </legend>
-	<input type="text" name="vendor_name" placeholder="Put vendor name here...">
-	<input type="submit">
+	<fieldset>
+		<legend> Search deals by vendor or enter all for all deals</legend>
+		<label> Vendor Name </label><br>
+		<input type="text" name="vendor_name" placeholder="Put vendor name here...">
+		<input class="submit" type="submit">
+	</fieldset>
 </form>
 
-<h2> Search deals by item </h2>
-
 <form action='/users/<%=@current_user.username%>/deals' method="get">
-	<legend> Item name </legend>
-	<input type="text" name="item_name" placeholder="Put item name here...">
-	<input type="submit">
+	<fieldset>
+		<legend> Search deals by item </legend>
+		<label> Item name </label><br>
+		<input type="text" name="item_name" placeholder="Put item name here...">
+		<input class="submit" type="submit">
+	</fieldset>
 </form>
 
 <% if @deals.length == 0 %>

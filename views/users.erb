@@ -1,41 +1,50 @@
-<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
-<nav>
-	<a href="/users/<%=@current_user.username%>">User Page</a>
-	<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
-	<a href="/users/<%=@current_user.username%>/deals">Deals</a>
-	<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
-</nav>
+<div class="userheader">
+	<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
+	<nav class="user">
+		<a href="/users/<%=@current_user.username%>">User Page</a>
+		<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
+		<a href="/users/<%=@current_user.username%>/deals">Deals</a>
+		<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
+	</nav>
+</div>
 
-<legend>Create a Vendor</legend>
-	<form action="/create_vendor" method="post">
-	  <legend>Name</legend>
-	  <input type="text" name="name" placeholder="Put vendor name here..." required>
-	  <input type="submit">
-	</form>
-<legend> Create Item </legend>
-	<form action="/create_item" method="post">
-	  <legend>Name</legend>
-	  <input type="text" name="name" placeholder="Put name here..." required>
-	  <legend>Description</legend>
-	  <input type="text" name="description" required>
-	  <input type="submit">
-	</form>
+<form action="/create_vendor" method="post">
+	<fieldset>
+		<legend>Create a Vendor</legend>
+		<p><label>Name</label><br>
+	  <input type="text" name="name" placeholder="Put vendor name here..." required><p>
+	  <p class="submit"><input type="submit"/></p>
+	</fieldset>
+</form>
 
-<legend> Create Deal </legend>
-	<form action="/create_deal" method ="post">
-		<legend>vendor</legend>
+<form action="/create_item" method="post">
+	<fieldset>
+		<legend> Create Item </legend>
+		<p><label>Name</label><br>
+	  <input type="text" name="name" placeholder="Put name here..." required></p>
+	  <p><label>Description</label><br>
+	  <input type="text" name="description" required></p>
+	  <p class="submit"><input type="submit"></p>
+	</fieldset>
+</form>
+
+<form action="/create_deal" method ="post">
+	<fieldset>
+	<legend> Create Deal </legend>
+		<label>Vendor</label><br>
 		<select name="vendor">
 			<% @vendors.each do |vendor| %>
 	  	<option value = "<%= vendor.id %>"><%=vendor.name%></option>
 	  	<% end %>
-		</select>
-		<legend>item</legend>
+		</select><br>
+		<label>Item</label><br>
 		<select name="item">
 			<% @items.each do |item| %>
 			<option value = "<%= item.id %>"><%=item.name%></option>
 			<% end %>
 		</select>
-		<legend>price</legend>
+		<label>price</label>
 		<input type="text" name="price" required>
-		<input type="submit">
+		<p class="submit"><input type="submit"></p>
+		</fieldset>
 	</form>

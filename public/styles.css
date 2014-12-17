@@ -30,25 +30,62 @@ header h1{
   bottom: 0;
   left: 0;
   margin: 0;
+  padding-left: 10px;
 }
-
+/* Navs */
 .nav_index{
 	position: absolute;
 	top: 7px;
 	right: 0;
 	display: block;
+}
 
+.user {
+
+}
+
+div.userheader {
+	background: #000;
+	position: relative;
+	height: 30px;
+}
+
+div.userheader nav{
+	position: absolute;
+
+}
+
+div.userheader h2{
+	position: absolute;
+	top: 0px;
+	right: 10px;
+	margin: 0;
+	width: 20%;
+	color: #fff;
+}
+
+nav.user a{
+	display: inline-block;
+	font-size: 20px;
+	text-decoration: none;
+	color: #fff;
+	padding-left: 10px;
+	padding-top: 5px;
 }
 /*Forms styles*/
 .submit input
 {
 margin-left: 4.5em;
 }
+form {
+	padding-top: 15px;
+}
 
 fieldset{
 	border: 3px solid #781351;
 	width:  41%;
 	margin: auto;
+	clear: both;
 
 	}
 
@@ -79,11 +116,6 @@ header a {
 	margin-right: 15px;
 }
 
-.greeting {
-	float: right;
-	margin: 10px;
-}
-
 .table {
 	padding: 4px;
   border:solid black 1px;
@@ -94,4 +126,12 @@ header a {
 	padding-top: 30px;
 	width: 50%;
 	margin: auto;
+}
+
+ul li{
+	list-style-type: none;
+}
+
+ul form{
+	display: inline-block;
 }
