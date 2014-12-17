@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Small Time Grocer!</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
     <link type="text/css" rel="stylesheet" href="/styles.css">
   </head>
   <body>
   	<header>
   		<h1> Small-Time Grocer </h1>
-      <nav>
+      <nav class="nav_index">
         <a href="/">Home</a>
         <a href="/login">Login</a>
         <a href="/signup">Signup</a>
         <a href="/logout">Logout</a>
-      <nav>
+      </nav>
   	</header>
   	<div class="error">
   		<%= @errors[0] %>

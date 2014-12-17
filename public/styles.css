@@ -1,0 +1,23 @@
+*{
+	box-sizing:border-box;
+}
+
+html {
+	background: #66ccff;
+
+}
+body {
+	width: 1000px;
+	margin: auto;
+}
+
+header{
+	background-image: url("http://www.twainhartemarket.com/Images/BannerProduce.jpg");
+	background-size: 1000px;
+	background-repeat: no-repeat;
+	color: #fff;
+}
+
+.nav_index{
+	display: block;
+}
