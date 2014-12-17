@@ -14,22 +14,21 @@ require_relative './config/environments'
 enable :sessions
 
 before do
-
 	@errors ||= []
-	# puts session[:user_id]
 	@current_user = User.find_by(id: session[:user_id])
 end
 
+# home page
 get '/' do
-	@items = Item.all
-	@users = User.all
 	erb :index
 end
 
+# signup page
 get '/signup' do
 	erb :signup
 end
 
+# post route for signing up
 post '/signup' do
 	@password = BCrypt::Password.create(params[:password])
 	if params[:password] == params[:password_confirm]
@@ -47,10 +46,11 @@ post '/signup' do
 	end
 end
 
+# login page
 get '/login' do
 	erb :login
 end
-
+# post route for login
 post '/login' do
 	@user = User.find_by(username: params[:username])
 	if @user && @user.authenticate(params[:password])
@@ -62,17 +62,20 @@ post '/login' do
 	end
 end
 
+# items view
 get '/items' do
 	@items = Item.all
 	erb :items
 end
 
+# items route to delete item object
 get '/items/:id' do
 	@item = Item.find(params[:id])
 	@item.destroy
 	redirect("/items")
 end
 
+# user page
 get '/users/:username' do
 	@vendors = @current_user.vendors.all.sort_by{|vendor|vendor.name.downcase}
 	@items = Item.all.sort_by{|item|item.name.downcase}
@@ -83,17 +86,20 @@ get '/users/:username' do
 	erb :users
 end
 
+# vendors page
 get '/users/:username/vendors' do
 	@vendors = @current_user.vendors
 	erb :vendors
 end
 
+# destroy vendor route
 get '/users/:username/vendors/:id' do
 	@vendor = Vendor.find(params[:id])
 	@vendor.destroy
 	redirect("/users/#{params[:username]}/vendors")
 end
 
+# view deals route
 get '/users/:username/deals' do
 	@purchases = Purchase.all
 	@deals = []
@@ -112,6 +118,7 @@ get '/users/:username/deals' do
 	erb :deals
 end
 
+# update deals view
 get '/users/:username/deals/:deal_id' do
 	@deal_id = params[:deal_id]
 	@vendors = Vendor.all.sort_by{|vendor|vendor.name.downcase}
@@ -119,6 +126,7 @@ get '/users/:username/deals/:deal_id' do
 	erb :update_deal
 end
 
+# update post route
 post '/users/:username/deals/:deal_id' do
 	@deal = Deal.find(params[:deal_id])
 	@deal.vendor_id = params[:vendor]
@@ -128,6 +136,7 @@ post '/users/:username/deals/:deal_id' do
 	redirect("/users/#{params[:username]}/deals")
 end
 
+# update or create purchase route
 post '/users/:username/purchase/:id' do
 	@user = User.find_by(username: params[:username])
 	@purchase = Purchase.find_by(user_id: @user.id, deal_id: params[:id])
@@ -138,26 +147,29 @@ post '/users/:username/purchase/:id' do
 		Purchase.create(user_id: @user.id, deal_id: params[:id], total_purchases: 1)
 	end
 	redirect("/users/#{@user.username}/deals")
-
 end
 
+# delete deal route
 get '/users/:username/deals/:deal_id/delete' do
 	@deal = Deal.find(params[:deal_id])
 	@deal.destroy
 	redirect("/users/#{params[:username]}/deals")
 end
 
+# view purchases
 get '/users/:username/purchases' do
 	@purchases = @current_user.purchases
 	erb :purchases
 end
 
+# delete purchase route
 get '/users/:username/purchases/:purchase_id/delete' do
 	@purchase = Purchase.find(params[:purchase_id])
 	@purchase.destroy
 	redirect("/users/#{params[:username]}/purchases")
 end
 
+# create item post route
 post '/create_item' do
 	@item = Item.new(name: params[:name], description: params[:description])
 	if @item.save
@@ -169,16 +181,19 @@ post '/create_item' do
 	redirect("/users/#{@current_user.username}")
 end
 
+# create vendor post route
 post '/create_vendor' do
 	@vendor = Vendor.create(name: params[:name], user_id: @current_user.id)
 	redirect("/users/#{@current_user.username}")
 end
 
+# create deal post route
 post '/create_deal' do
 	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: params[:price])
 	redirect("/users/#{@current_user.username}")
 end
 
+# logout
 get '/logout' do
 	session.clear
 	@errors << "You have successfully logged out!"
