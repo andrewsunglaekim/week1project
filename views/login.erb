@@ -1,7 +1,8 @@
 <form action="/login" method="post">
-  <legend>Username</legend>
-  <input type="text" name="username" placeholder="username" required>
-  <legend>Password</legend>
-  <input type="password" name="password" required>
-  <input type="submit">
+	<fieldset>
+	  <legend>Login</legend>
+	  <p><label for="username">Username</label><input id="username" type="text" name="username" placeholder="username" required/></p>
+	  <p><label for="password">Password</label><input id="password" type="password" name="password" required/></p>
+	  <p class="submit"><input type="submit" value="Login!"/></p>
+	</fieldset>
 </form>
