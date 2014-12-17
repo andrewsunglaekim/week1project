@@ -26,31 +26,35 @@
 <% else %>
 	<h2><%=@placeholder.capitalize %></h2>
 	<table>
-		<tr>
-			<th>Item Name</th>
-			<th>Item Description</th>
-			<th>Vendor Name</th>
-			<th>Price</th>
-		</tr>
-		<% @deals.each do |deal| %>
+		<thead>
 			<tr>
-				<td><%= deal.item.name %></td>
-				<td><%= deal.item.description %></td>
-				<td><%= deal.vendor.name %></td>
-				<td><%= deal.price %></td>
-				<td>
-					<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
-						<input type="submit" value="purchase">
-					</form>
-				</td>
-				<td>
-					<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>/delete' method="delete">
-						<input type="submit" value="delete">
-					</form>
-				</td>
-				<td><a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a></td>
+				<th>Item Name</th>
+				<th>Item Description</th>
+				<th>Vendor Name</th>
+				<th>Price</th>
 			</tr>
-		<% end %>
+		</thead>
+		<tbody>
+			<% @deals.each do |deal| %>
+				<tr>
+					<td><%= deal.item.name %></td>
+					<td><%= deal.item.description %></td>
+					<td><%= deal.vendor.name %></td>
+					<td><%= deal.price %></td>
+					<td>
+						<form action='/users/<%=deal.vendor.user.username%>/purchase/<%=deal.id%>' method="post">
+							<input type="submit" value="purchase">
+						</form>
+					</td>
+					<td>
+						<form action='/users/<%=deal.vendor.user.username%>/deals/<%=deal.id%>/delete' method="delete">
+							<input type="submit" value="delete">
+						</form>
+					</td>
+					<td><a href='/users/<%=@current_user.username%>/deals/<%=deal.id%>'>update</a></td>
+				</tr>
+			<% end %>
+		</tbody>
 	</ul>
 <%end%>
 

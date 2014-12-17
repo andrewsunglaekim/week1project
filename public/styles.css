@@ -3,21 +3,53 @@
 }
 
 html {
-	background: #66ccff;
+	background: #b5dae8;
 
 }
 body {
-	width: 1000px;
+	width: 100%;
 	margin: auto;
 }
 
 header{
-	background-image: url("http://www.twainhartemarket.com/Images/BannerProduce.jpg");
-	background-size: 1000px;
+	margin: 0;
+	position: relative;
+	height: 150px;
+	background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1.0)
+    ), url("http://www.twainhartemarket.com/Images/BannerProduce.jpg");
+	background-size: cover;
 	background-repeat: no-repeat;
 	color: #fff;
 }
 
+header h1{
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+
 .nav_index{
+	position: absolute;
+	top: 7px;
+	right: 0;
 	display: block;
+
+}
+
+header a {
+	display: block;
+	font-size: 18px;
+	height: 35px;
+	color :#fff;
+	text-decoration: none;
+	text-shadow: 4px 4px 4px #000;
+}
+
+.greeting {
+	float: right;
+	margin: 10px;
 }
