@@ -14,4 +14,4 @@ A user can:
 <h2>Getting Started</h2>
 
 1. Install development environment
-2. <code>bundle install</code>
+ <code>bundle install</code>
