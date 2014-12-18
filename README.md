@@ -13,7 +13,13 @@ A user can:
 
 <h2>Getting Started</h2>
 
-1. Install development environment <br>
+1. Install development environment in the root directory where app.rb lives in<br>
  <code>bundle install</code>
-2. Run application <br>
+
+2. Run application in the root directory where app.rb lives in <br>
  <code>ruby app.rb</code>
+
+3. Open up browser and enter:<br>
+ <code>localhost:4567</code>
+
+<h3> And you're in! </h3>
