@@ -40,3 +40,6 @@ This website is currently deployed at <link>https://warm-tor-1487.herokuapp.com/
 User Stories can be found at <link>https://www.pivotaltracker.com/n/projects/1230064</link>
 
 ERD's can be found at <link>http://www.gliffy.com/go/publish/6824695</link>
+
+<h4>Going Forward!</h4>
+<p> I hope to create more functionality. I want to incorporate dates of purchases and the ability to track inventories eventually as well. Might have to deal with some issues in terms of scalability going forward. Any and all suggestions are super helpful. Thanks </p>
