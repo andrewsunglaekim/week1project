@@ -13,5 +13,7 @@ A user can:
 
 <h2>Getting Started</h2>
 
-1. Install development environment
+1. Install development environment <br>
  <code>bundle install</code>
+2. Run application <br>
+ <code>ruby app.rb</code>
