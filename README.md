@@ -27,3 +27,5 @@ A user can:
 This website is currently deployed at <link>https://warm-tor-1487.herokuapp.com/</link>
 
 User Stories can be found at <link>https://www.pivotaltracker.com/n/projects/1230064</link>
+
+ERD's can be found at <link>http://www.gliffy.com/go/publish/6824695</link>
