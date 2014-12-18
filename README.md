@@ -2,6 +2,13 @@
 
 <p>Small-Time Grocer is an organizational tool for small grocery store owners and convenience store owners. In its current state it can track vendors, items, deals and purchases.</p>
 
+Technologies used:
+- Ruby 2.1.2
+- Sinatra
+- PostgreSQL database
+- CSS
+- Active Record
+
 A user can:
 - signup/login
 - create vendors
@@ -16,10 +23,14 @@ A user can:
 1. Install development environment in the root directory where app.rb lives in<br>
  <code>bundle install</code>
 
-2. Run application in the root directory where app.rb lives in <br>
+2. Create database <br>
+ <code>rake db:create
+rake db:migrate</code>
+
+3. Run application in the root directory where app.rb lives in <br>
  <code>ruby app.rb</code>
 
-3. Open up browser and enter:<br>
+4. Open up browser and enter:<br>
  <code>localhost:4567</code>
 
 <h3> And you're in! </h3>
