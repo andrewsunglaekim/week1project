@@ -11,4 +11,7 @@ A user can:
 - search deals available by vendor or item
 - view purchases
 
-Getting Started
+<h2>Getting Started</h2>
+
+1. Install development environment
+2. <code>bundle install</code>
