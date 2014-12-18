@@ -25,3 +25,5 @@ A user can:
 <h3> And you're in! </h3>
 
 This website is currently deployed at <link>https://warm-tor-1487.herokuapp.com/</link>
+
+User Stories can be found at <link>https://www.pivotaltracker.com/n/projects/1230064</link>
