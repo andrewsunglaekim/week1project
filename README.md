@@ -24,7 +24,8 @@ A user can:
  <code>bundle install</code>
 
 2. Create database <br>
- <code>rake db:create<br>rake db:migrate</code>
+ <code>rake db:create</code>
+ <code>rake db:migrate</code>
 
 3. Run application in the root directory where app.rb lives in <br>
  <code>ruby app.rb</code>
