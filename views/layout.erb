@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Small Time Grocer!</title>
-    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <link type="text/css" rel="stylesheet" href="/normalize.css">
     <link type="text/css" rel="stylesheet" href="/styles.css">
   </head>
   <body>
@@ -20,6 +20,11 @@
   		<%= @errors[0] %>
   	</div>
     <%= yield %>
-    <footer></footer>
+    <footer>
+      <div class="footer">
+        <a href="mailto:andrew.sunglae.kim@gmail.com">Email me</a>
+      </div>
+    </footer>
   </body>
+
 </html>

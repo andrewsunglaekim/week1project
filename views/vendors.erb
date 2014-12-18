@@ -1,19 +1,16 @@
-<div class="userheader">
-	<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
-	<nav class="user">
-		<a href="/users/<%=@current_user.username%>">User Page</a>
-		<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
-		<a href="/users/<%=@current_user.username%>/deals">Deals</a>
-		<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
-	</nav>
+<%= erb :navpartial %>
+<div class="formfield">
+<fieldset>
+	<legend>Vendors</legend>
+	<ul class="vendors">
+		<% @vendors.each do |vendor| %>
+			<li>
+				<form action='/users/<%=@current_user.username%>/vendors/<%=vendor.id%>' method="delete">
+					<input type="submit" value="delete">
+				</form>
+				<%= vendor.name %>
+			</li>
+		<% end %>
+	</ul>
+</fieldset>
 </div>
-
-<ul>
-	<% @vendors.each do |vendor| %>
-		<li><%= vendor.name %>
-		<form action='/users/<%=@current_user.username%>/vendors/<%=vendor.id%>' method="delete">
-			<input type="submit" value="delete">
-		</form>
-		</li>
-	<% end %>
-</ul>

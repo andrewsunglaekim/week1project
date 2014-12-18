@@ -1,17 +1,10 @@
-<div class="userheader">
-	<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
-	<nav class="user">
-		<a href="/users/<%=@current_user.username%>">User Page</a>
-		<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
-		<a href="/users/<%=@current_user.username%>/deals">Deals</a>
-		<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
-	</nav>
-</div>
-
+<%= erb :navpartial %>
+<div class="formfield">
+<fieldset>
 <% if @purchases.length == 0 %>
-	<h2>You have no purchases yet!</h2>
+	<legend>You have no purchases yet!</legend>
 <% else %>
-	<h2>Purchases</h2>
+	<legend>Purchases</legend>
 	<table>
 		<thead>
 			<tr>
@@ -29,7 +22,7 @@
 					<td class="table"><%= purchase.deal.item.name %></td>
 					<td class="table"><%=purchase.deal.item.description %></td>
 					<td class="table"><%= purchase.deal.vendor.name %></td>
-					<td class="table"><%= purchase.deal.price %></td>
+					<td class="table">$<%= purchase.deal.price.to_s.insert(-3, ".") %></td>
 					<td class="table"><%=purchase.total_purchases %></td>
 					<td class="table">
 						<form action='/users/<%=purchase.user.username%>/purchases/<%=purchase.id%>/delete' method="delete">
@@ -39,4 +32,7 @@
 				</tr>
 			<% end %>
 		</tbody>
+	</table>
 <%end%>
+</fieldset>
+</div>

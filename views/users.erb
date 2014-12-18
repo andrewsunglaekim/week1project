@@ -1,14 +1,6 @@
-<div class="userheader">
-	<h2 class="greeting"> Welcome <%=@current_user.username.capitalize %></h2>
-	<nav class="user">
-		<a href="/users/<%=@current_user.username%>">User Page</a>
-		<a href="/users/<%=@current_user.username%>/vendors">Vendors</a>
-		<a href="/users/<%=@current_user.username%>/deals">Deals</a>
-		<a href="/users/<%=@current_user.username%>/purchases">Purchases</a>
-	</nav>
-</div>
+<%= erb :navpartial %>
 
-<form action="/create_vendor" method="post">
+<form class="formfield" action="/create_vendor" method="post">
 	<fieldset>
 		<legend>Create a Vendor</legend>
 		<p><label>Name</label><br>
@@ -17,7 +9,7 @@
 	</fieldset>
 </form>
 
-<form action="/create_item" method="post">
+<form class="formfield" action="/create_item" method="post">
 	<fieldset>
 		<legend> Create Item </legend>
 		<p><label>Name</label><br>
@@ -28,7 +20,7 @@
 	</fieldset>
 </form>
 
-<form action="/create_deal" method ="post">
+<form class="formfield" action="/create_deal" method ="post">
 	<fieldset>
 	<legend> Create Deal </legend>
 		<label>Vendor</label><br>

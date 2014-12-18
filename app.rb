@@ -11,6 +11,7 @@ require_relative './models/purchase'
 require_relative './models/deal'
 require_relative './config/environments'
 
+#binding.pry
 enable :sessions
 
 before do
@@ -189,7 +190,8 @@ end
 
 # create deal post route
 post '/create_deal' do
-	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: params[:price])
+	@price = params[:price].split(".").join
+	@deal = Deal.create(vendor_id: params[:vendor], item_id: params[:item], price: @price)
 	redirect("/users/#{@current_user.username}")
 end
 

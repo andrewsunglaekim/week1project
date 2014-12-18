@@ -77,8 +77,8 @@ nav.user a{
 {
 margin-left: 4.5em;
 }
-form {
-	padding-top: 15px;
+.formfield {
+	padding: 10px;
 }
 
 fieldset{
@@ -86,8 +86,13 @@ fieldset{
 	width:  41%;
 	margin: auto;
 	clear: both;
-
 	}
+
+fieldset:after{
+	content:' ';
+	display:block;
+  clear:both;
+}
 
 fieldset input{
 	margin-left: 10px;
@@ -117,7 +122,7 @@ header a {
 }
 
 .table {
-	padding: 4px;
+	padding: 2px;
   border:solid black 1px;
   white-space: normal;
 }
@@ -130,8 +135,45 @@ header a {
 
 ul li{
 	list-style-type: none;
+	margin-left: -50px;
+	display: inline-block;
+	width: 200px;
+	padding: 5px 0px;
+}
+ul{
+	padding: 0;
+	width: 30%;
+	margin: auto;
 }
 
 ul form{
 	display: inline-block;
+}
+
+table {
+	border-spacing: 1px;
+}
+
+h2 {
+	margin-left: 10px;
+	margin-bottom: 7px;
+}
+
+.vendors{
+	padding: 0px;
+}
+
+footer {
+	padding-top: 50px;
+}
+
+footer a{
+	text-decoration: none;
+	color: #fff;
+	padding: 0 0 5px 15px;
+}
+
+.footer {
+	padding-top: 100px;
+	padding-bottom: 10px
 }

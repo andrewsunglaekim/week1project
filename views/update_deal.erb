@@ -1,4 +1,5 @@
-<form action="/users/<%=@current_user.username%>/deals/<%=@deal_id%>" method ="post">
+<%= erb :navpartial %>
+<form class="formfield" action="/users/<%=@current_user.username%>/deals/<%=@deal_id%>" method ="post">
 	<fieldset>
 		<legend>Update Deal</legend>
 		<label>Vendor</label><br>
